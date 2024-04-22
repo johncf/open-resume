@@ -1,6 +1,6 @@
 import "globals.css";
 import { TopNavBar } from "components/TopNavBar";
-import { Analytics } from "@vercel/analytics/react";
+//import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "OpenResume - Free Open-source Resume Builder and Parser",
@@ -18,7 +18,6 @@ export default function RootLayout({
       <body>
         <TopNavBar />
         {children}
-        <Analytics />
       </body>
     </html>
   );
