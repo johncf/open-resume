@@ -53,19 +53,19 @@ export const ResumePDFSection = ({
 
 export const ResumePDFText = ({
   bold = false,
-  themeColor,
+  color,
   style = {},
   children,
 }: {
   bold?: boolean;
-  themeColor?: string;
+  color?: string;
   style?: Style;
   children: React.ReactNode;
 }) => {
   return (
     <Text
       style={{
-        color: themeColor || DEFAULT_FONT_COLOR,
+        color: color || DEFAULT_FONT_COLOR,
         fontWeight: bold ? "bold" : "normal",
         ...style,
       }}

@@ -27,7 +27,7 @@ export const ResumePDFProfile = ({
     <ResumePDFSection style={{ marginTop: spacing["4"] }}>
       <ResumePDFText
         bold={true}
-        themeColor={themeColor}
+        color={themeColor}
         style={{ fontSize: "20pt" }}
       >
         {name}
