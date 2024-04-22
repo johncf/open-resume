@@ -22,30 +22,18 @@ export const ResumePDFEducation = ({
     <ResumePDFSection themeColor={themeColor} heading={heading}>
       {educations.map(
         ({ school, degree, date, gpa, descriptions = [] }, idx) => {
-          // Hide school name if it is the same as the previous school
-          const hideSchoolName =
-            idx > 0 && school === educations[idx - 1].school;
           const showDescriptions = descriptions.join() !== "";
+          const secondLineColor = "#666";
 
           return (
             <View key={idx}>
-              {!hideSchoolName && (
-                <ResumePDFText bold={true}>{school}</ResumePDFText>
-              )}
-              <View
-                style={{
-                  ...styles.flexRowBetween,
-                  marginTop: hideSchoolName
-                    ? "-" + spacing["1"]
-                    : spacing["1.5"],
-                }}
-              >
-                <ResumePDFText>{`${
-                  gpa
-                    ? `${degree} - ${Number(gpa) ? gpa + " GPA" : gpa}`
-                    : degree
-                }`}</ResumePDFText>
+              <View style={{ ...styles.flexRowBetween }}>
+                <ResumePDFText bold={true}>{degree}</ResumePDFText>
                 <ResumePDFText>{date}</ResumePDFText>
+              </View>
+              <View style={{ ...styles.flexRowBetween, marginTop: spacing["1.2"] }}>
+                <ResumePDFText color={secondLineColor}>{school}</ResumePDFText>
+                {gpa && ( <ResumePDFText color={secondLineColor}>{gpa}</ResumePDFText> )}
               </View>
               {showDescriptions && (
                 <View style={{ ...styles.flexCol, marginTop: spacing["1.5"] }}>
