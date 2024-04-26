@@ -67,7 +67,11 @@ export const ResumePDFProfile = ({
                 break;
               }
               default: {
-                src = value.startsWith("http") ? value : `https://${value}`;
+                if (value.startsWith("linkedin")) {
+                  src = `https://www.${value}`;
+                } else {
+                  src = value.startsWith("http") ? value : `https://${value}`;
+                }
               }
             }
 
