@@ -21,9 +21,10 @@ export const initialProfile: ResumeProfile = {
 };
 
 export const initialWorkExperience: ResumeWorkExperience = {
-  company: "",
   jobTitle: "",
   date: "",
+  company: "",
+  city: "",
   descriptions: [],
 };
 

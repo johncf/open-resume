@@ -19,9 +19,10 @@ export const END_HOME_RESUME: Resume = {
   },
   workExperiences: [
     {
-      company: "ABC Company",
       jobTitle: "Software Engineer",
       date: "May 2023 - Present",
+      company: "ABC Company",
+      city: "NYC, NY",
       descriptions: [
         "Lead a cross-functional team of 5 engineers in developing a search bar, which enables thousands of daily active users to search content across the entire platform",
         "Create stunning home page product demo animations that drives up sign up rate by 20%",
@@ -29,9 +30,10 @@ export const END_HOME_RESUME: Resume = {
       ],
     },
     {
-      company: "DEF Organization",
       jobTitle: "Software Engineer Intern",
       date: "Summer 2022",
+      company: "DEF Organization",
+      city: "Berlin, Germany",
       descriptions: [
         "Re-architected the existing content editor to be mobile responsive that led to a 10% increase in mobile user engagement",
         "Created a progress bar to help users track progress that drove up user retention by 15%",
@@ -39,9 +41,10 @@ export const END_HOME_RESUME: Resume = {
       ],
     },
     {
-      company: "XYZ University",
       jobTitle: "Research Assistant",
       date: "Summer 2021",
+      company: "XYZ University",
+      city: "Berlin, Germany",
       descriptions: [
         "Devised a new NLP algorithm in text classification that results in 10% accuracy increase",
         "Compiled and presented research findings to a group of 20+ faculty and students",

@@ -8,9 +8,10 @@ export interface ResumeProfile {
 }
 
 export interface ResumeWorkExperience {
-  company: string;
   jobTitle: string;
   date: string;
+  company: string;
+  city: string;
   descriptions: string[];
 }
 

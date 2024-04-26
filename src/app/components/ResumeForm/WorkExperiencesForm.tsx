@@ -19,7 +19,7 @@ export const WorkExperiencesForm = () => {
 
   return (
     <Form form="workExperiences" addButtonText="Add Job">
-      {workExperiences.map(({ company, jobTitle, date, descriptions }, idx) => {
+      {workExperiences.map(({ jobTitle, date, company, city, descriptions }, idx) => {
         const handleWorkExperienceChange = (
           ...[
             field,
@@ -45,14 +45,6 @@ export const WorkExperiencesForm = () => {
             deleteButtonTooltipText="Delete job"
           >
             <Input
-              label="Company"
-              labelClassName="col-span-full"
-              name="company"
-              placeholder="Khan Academy"
-              value={company}
-              onChange={handleWorkExperienceChange}
-            />
-            <Input
               label="Job Title"
               labelClassName="col-span-4"
               name="jobTitle"
@@ -66,6 +58,22 @@ export const WorkExperiencesForm = () => {
               name="date"
               placeholder="Jun 2022 - Present"
               value={date}
+              onChange={handleWorkExperienceChange}
+            />
+            <Input
+              label="Company"
+              labelClassName="col-span-4"
+              name="company"
+              placeholder="Khan Academy"
+              value={company}
+              onChange={handleWorkExperienceChange}
+            />
+            <Input
+              label="City"
+              labelClassName="col-span-2"
+              name="city"
+              placeholder="Tokyo, Japan"
+              value={city}
               onChange={handleWorkExperienceChange}
             />
             <BulletListTextarea

@@ -18,7 +18,7 @@ export const ResumePDFWorkExperience = ({
 }) => {
   return (
     <ResumePDFSection themeColor={themeColor} heading={heading}>
-      {workExperiences.map(({ company, jobTitle, date, descriptions }, idx) => {
+      {workExperiences.map(({ jobTitle, date, company, city, descriptions }, idx) => {
         const secondLineColor = "#888";
 
         return (
@@ -29,6 +29,7 @@ export const ResumePDFWorkExperience = ({
             </View>
             <View style={{ ...styles.flexRowBetween, marginTop: spacing["1.2"] }}>
               <ResumePDFText bold={true} color={secondLineColor}>{company}</ResumePDFText>
+              <ResumePDFText color={secondLineColor}>{city}</ResumePDFText>
             </View>
             <View style={{ ...styles.flexCol, marginTop: spacing["1.5"] }}>
               <ResumePDFBulletList items={descriptions} />
