@@ -1,6 +1,5 @@
 import type { Resume } from "lib/redux/types";
 import { initialCustom } from "lib/redux/resumeSlice";
-import { deepClone } from "lib/deep-clone";
 import type { ResumeSectionToLines } from "lib/parse-resume-from-pdf/types";
 import { extractProfile } from "lib/parse-resume-from-pdf/extract-resume-from-sections/extract-profile";
 import { extractEducation } from "lib/parse-resume-from-pdf/extract-resume-from-sections/extract-education";
@@ -37,6 +36,6 @@ export const extractResumeFromSections = (
     workExperiences,
     projects,
     skills,
-    custom: [deepClone(initialCustom)],
+    custom: [structuredClone(initialCustom)],
   };
 };

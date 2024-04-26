@@ -1,5 +1,3 @@
-import { deepClone } from "lib/deep-clone";
-
 type Object = { [key: string]: any };
 
 /**
@@ -23,7 +21,7 @@ export function* makeObjectCharIterator<T extends Object>(
   level = 0
 ) {
   // Have to manually cast Object type and return T type due to https://github.com/microsoft/TypeScript/issues/47357
-  const object: Object = level === 0 ? deepClone(start) : start;
+  const object: Object = level === 0 ? structuredClone(start) : start;
   for (const [key, endValue] of Object.entries(end)) {
     if (typeof endValue === "object") {
       const recursiveIterator = makeObjectCharIterator(
@@ -36,12 +34,12 @@ export function* makeObjectCharIterator<T extends Object>(
         if (next.done) {
           break;
         }
-        yield deepClone(object) as T;
+        yield structuredClone(object) as T;
       }
     } else {
       for (let i = 1; i <= endValue.length; i++) {
         object[key] = endValue.slice(0, i);
-        yield deepClone(object) as T;
+        yield structuredClone(object) as T;
       }
     }
   }

@@ -7,7 +7,6 @@ import { ResumeIframeCSR } from "components/Resume/ResumeIFrame";
 import { START_HOME_RESUME, END_HOME_RESUME } from "home/constants";
 import { makeObjectCharIterator } from "lib/make-object-char-iterator";
 import { useTailwindBreakpoints } from "lib/hooks/useTailwindBreakpoints";
-import { deepClone } from "lib/deep-clone";
 
 // countObjectChar(END_HOME_RESUME) -> ~1800 chars
 const INTERVAL_MS = 50; // 20 Intervals Per Second
@@ -20,7 +19,7 @@ const CHARS_PER_INTERVAL = 10;
 const RESET_INTERVAL_MS = 60 * 1000; // 60s
 
 export const AutoTypingResume = () => {
-  const [resume, setResume] = useState(deepClone(initialResumeState));
+  const [resume, setResume] = useState(structuredClone(initialResumeState));
   const resumeCharIterator = useRef(
     makeObjectCharIterator(START_HOME_RESUME, END_HOME_RESUME)
   );

@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 import addPdfSrc from "public/assets/add-pdf.svg";
 import Image from "next/image";
 import { cx } from "lib/cx";
-import { deepClone } from "lib/deep-clone";
 
 const defaultFileState = {
   name: "",
@@ -73,7 +72,7 @@ export const ResumeDropzone = ({
 
   const onImportClick = async () => {
     const resume = await parseResumeFromPdf(file.fileUrl);
-    const settings = deepClone(initialSettings);
+    const settings = structuredClone(initialSettings);
 
     // Set formToShow settings based on uploaded resume if users have used the app before
     if (getHasUsedAppBefore()) {

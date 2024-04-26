@@ -6,7 +6,6 @@ import {
   initialWorkExperience,
 } from "lib/redux/resumeSlice";
 import type { Resume } from "lib/redux/types";
-import { deepClone } from "lib/deep-clone";
 
 export const END_HOME_RESUME: Resume = {
   profile: {
@@ -88,16 +87,16 @@ export const END_HOME_RESUME: Resume = {
       "Soft: Teamwork, Creative Problem Solving, Communication, Learning Mindset, Agile",
     ],
   },
-  custom: [deepClone(initialCustom)],
+  custom: [structuredClone(initialCustom)],
 };
 
 export const START_HOME_RESUME: Resume = {
-  profile: deepClone(initialProfile),
+  profile: structuredClone(initialProfile),
   workExperiences: END_HOME_RESUME.workExperiences.map(() =>
-    deepClone(initialWorkExperience)
+    structuredClone(initialWorkExperience)
   ),
-  educations: [deepClone(initialEducation)],
-  projects: [deepClone(initialProject)],
+  educations: [structuredClone(initialEducation)],
+  projects: [structuredClone(initialProject)],
   skills: {
     featuredSkills: END_HOME_RESUME.skills.featuredSkills.map((item) => ({
       skill: "",
@@ -105,5 +104,5 @@ export const START_HOME_RESUME: Resume = {
     })),
     descriptions: [],
   },
-  custom: [deepClone(initialCustom)],
+  custom: [structuredClone(initialCustom)],
 };
