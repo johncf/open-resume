@@ -3,12 +3,14 @@ import type { RootState } from "lib/redux/store";
 import type {
   FeaturedSkill,
   Resume,
+  ResumeCustom,
   ResumeEducation,
   ResumeProfile,
   ResumeProject,
   ResumeSkills,
   ResumeWorkExperience,
 } from "lib/redux/types";
+import { checkAndFixOldCustom } from "lib/redux/types";
 import type { ShowForm } from "lib/redux/settingsSlice";
 
 export const initialProfile: ResumeProfile = {
@@ -51,7 +53,9 @@ export const initialSkills: ResumeSkills = {
   descriptions: [],
 };
 
-export const initialCustom = {
+export const initialCustom: ResumeCustom = {
+  title: "",
+  date: "",
   descriptions: [],
 };
 
@@ -61,7 +65,7 @@ export const initialResumeState: Resume = {
   educations: [initialEducation],
   projects: [initialProject],
   skills: initialSkills,
-  custom: initialCustom,
+  custom: [initialCustom],
 };
 
 // Keep the field & value type in sync with CreateHandleChangeArgsWithDescriptions (components\ResumeForm\types.ts)
@@ -137,10 +141,12 @@ export const resumeSlice = createSlice({
     },
     changeCustom: (
       draft,
-      action: PayloadAction<{ field: "descriptions"; value: string[] }>
+      action: PayloadAction<CreateChangeActionWithDescriptions<ResumeCustom>>
     ) => {
-      const { value } = action.payload;
-      draft.custom.descriptions = value;
+      const { idx, field, value } = action.payload;
+      draft.custom = checkAndFixOldCustom(draft.custom);
+      const custom = draft.custom[idx];
+      custom[field] = value as any;
     },
     addSectionInForm: (draft, action: PayloadAction<{ form: ShowForm }>) => {
       const { form } = action.payload;
@@ -157,6 +163,10 @@ export const resumeSlice = createSlice({
           draft.projects.push(structuredClone(initialProject));
           return draft;
         }
+        case "custom": {
+          draft.custom.push(structuredClone(initialCustom));
+          return draft;
+        }
       }
     },
     moveSectionInForm: (
@@ -168,7 +178,7 @@ export const resumeSlice = createSlice({
       }>
     ) => {
       const { form, idx, direction } = action.payload;
-      if (form !== "skills" && form !== "custom") {
+      if (form !== "skills") {
         if (
           (idx === 0 && direction === "up") ||
           (idx === draft[form].length - 1 && direction === "down")
@@ -191,7 +201,7 @@ export const resumeSlice = createSlice({
       action: PayloadAction<{ form: ShowForm; idx: number }>
     ) => {
       const { form, idx } = action.payload;
-      if (form !== "skills" && form !== "custom") {
+      if (form !== "skills") {
         draft[form].splice(idx, 1);
       }
     },

@@ -1,10 +1,12 @@
 import { View } from "@react-pdf/renderer";
 import {
-  ResumePDFSection,
   ResumePDFBulletList,
+  ResumePDFSection,
+  ResumePDFText,
 } from "components/Resume/ResumePDF/common";
-import { styles } from "components/Resume/ResumePDF/styles";
+import { styles, spacing } from "components/Resume/ResumePDF/styles";
 import type { ResumeCustom } from "lib/redux/types";
+import { checkAndFixOldCustom } from "lib/redux/types";
 
 export const ResumePDFCustom = ({
   heading,
@@ -13,20 +15,35 @@ export const ResumePDFCustom = ({
   showBulletPoints,
 }: {
   heading: string;
-  custom: ResumeCustom;
+  custom: ResumeCustom[];
   themeColor: string;
   showBulletPoints: boolean;
 }) => {
-  const { descriptions } = custom;
-
+  custom = checkAndFixOldCustom(custom);
   return (
     <ResumePDFSection themeColor={themeColor} heading={heading}>
-      <View style={{ ...styles.flexCol }}>
-        <ResumePDFBulletList
-          items={descriptions}
-          showBulletPoints={showBulletPoints}
-        />
-      </View>
+      {custom.map(
+        ({ title, date, descriptions }, idx) => {
+          const showTitle = title !== "";
+
+          return (
+            <View key={idx}>
+              {showTitle && (
+                <View style={{ ...styles.flexRowBetween }}>
+                  <ResumePDFText bold={true}>{title}</ResumePDFText>
+                  <ResumePDFText>{date}</ResumePDFText>
+                </View>
+              )}
+              <View style={{ ...styles.flexCol, marginTop: spacing["1.5"] }}>
+                <ResumePDFBulletList
+                  items={descriptions}
+                  showBulletPoints={showBulletPoints}
+                />
+              </View>
+            </View>
+          );
+        }
+      )}
     </ResumePDFSection>
   );
 };

@@ -1,4 +1,5 @@
 import {
+  initialCustom,
   initialEducation,
   initialProfile,
   initialProject,
@@ -87,9 +88,7 @@ export const END_HOME_RESUME: Resume = {
       "Soft: Teamwork, Creative Problem Solving, Communication, Learning Mindset, Agile",
     ],
   },
-  custom: {
-    descriptions: [],
-  },
+  custom: [deepClone(initialCustom)],
 };
 
 export const START_HOME_RESUME: Resume = {
@@ -106,7 +105,5 @@ export const START_HOME_RESUME: Resume = {
     })),
     descriptions: [],
   },
-  custom: {
-    descriptions: [],
-  },
+  custom: [deepClone(initialCustom)],
 };
