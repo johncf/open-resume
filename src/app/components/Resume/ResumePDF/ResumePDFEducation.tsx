@@ -23,7 +23,7 @@ export const ResumePDFEducation = ({
       {educations.map(
         ({ school, degree, date, gpa, descriptions = [] }, idx) => {
           const showDescriptions = descriptions.join() !== "";
-          const secondLineColor = "#666";
+          const secondLineColor = "#777";
 
           return (
             <View key={idx}>
@@ -32,7 +32,7 @@ export const ResumePDFEducation = ({
                 <ResumePDFText>{date}</ResumePDFText>
               </View>
               <View style={{ ...styles.flexRowBetween, marginTop: spacing["1.2"] }}>
-                <ResumePDFText color={secondLineColor}>{school}</ResumePDFText>
+                <ResumePDFText bold={true} color={secondLineColor}>{school}</ResumePDFText>
                 {gpa && ( <ResumePDFText color={secondLineColor}>{gpa}</ResumePDFText> )}
               </View>
               {showDescriptions && (
